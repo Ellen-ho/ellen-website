@@ -5,7 +5,6 @@ import { Canvas } from '@react-three/fiber';
 import { Stars } from '@react-three/drei';
 import HeroSection from '@/component/HeroSection';
 import ProjectsSection from '@/component/ProjectsSection';
-import ResumeSection from '@/component/ResumeSection';
 import ContactSection from '@/component/ContactSection';
 import Header from '@/component/Header';
 import EarthAnimation from '@/component/EarthAnimation';
@@ -17,7 +16,6 @@ export default function HomePage() {
 
   const homeRef = useRef<HTMLDivElement>(null);
   const projectRef = useRef<HTMLDivElement>(null);
-  const resumeRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
   const EARTH_ANIMATION_HEIGHT = '100vh';
@@ -41,11 +39,6 @@ export default function HomePage() {
       ) {
         setActiveSection('contact');
       } else if (
-        resumeRef.current &&
-        scrollPosition >= resumeRef.current.offsetTop - windowHeight / 2
-      ) {
-        setActiveSection('resume');
-      } else if (
         projectRef.current &&
         scrollPosition >= projectRef.current.offsetTop - windowHeight / 2
       ) {
@@ -63,6 +56,9 @@ export default function HomePage() {
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
     document.documentElement.setAttribute('data-theme', newTheme);
+
+    const backgroundColor = newTheme === 'night' ? '#374150' : '#e7e0d6';
+    document.body.style.backgroundColor = backgroundColor;
   };
 
   return (
@@ -121,28 +117,17 @@ export default function HomePage() {
           style={{
             minHeight: '100vh',
             paddingTop: '2rem',
-            paddingBottom: '2rem',
+            paddingBottom: '1rem',
           }}
         >
           <ProjectsSection theme={theme} />
         </div>
 
         <div
-          ref={resumeRef}
-          style={{
-            minHeight: '100vh',
-            paddingTop: '2rem',
-            paddingBottom: '2rem',
-          }}
-        >
-          <ResumeSection theme={theme} />
-        </div>
-
-        <div
           ref={contactRef}
           style={{
-            minHeight: '100vh',
-            paddingTop: '2rem',
+            minHeight: '30vh',
+            paddingTop: '1rem',
             paddingBottom: '2rem',
           }}
         >
