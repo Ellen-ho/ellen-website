@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import * as THREE from 'three';
-import { useFrame, useLoader } from '@react-three/fiber';
-import { Sphere, Stars, Sky } from '@react-three/drei';
+import { useFrame, useLoader, useThree } from '@react-three/fiber';
+import { Sphere, Stars } from '@react-three/drei';
 import fontJson from '../app/fonts/helvetiker_bold.typeface.json';
 
 const FontLoader = require('three/examples/jsm/loaders/FontLoader').FontLoader;
@@ -37,14 +37,14 @@ const EarthAnimation: React.FC<EarthAnimationProps> = ({ theme }) => {
 
   const textGeometry1 = new TextGeometry('Hello, World.', {
     font,
-    size: 0.6,
+    size: 0.8,
     height: 0.1,
     curveSegments: 30,
   });
 
   const textGeometry2 = new TextGeometry('Hello, Real World.', {
     font,
-    size: 0.4,
+    size: 0.6,
     height: 0.1,
     curveSegments: 30,
   });
@@ -86,15 +86,50 @@ const EarthAnimation: React.FC<EarthAnimationProps> = ({ theme }) => {
   const shininess = isRetro ? 30 : 5;
   const emissiveIntensity = isRetro ? 0.3 : 0;
 
+  const WarmSky = () => {
+    const shader = {
+      uniforms: {
+        topColor: { value: new THREE.Color(0xffb347) },
+        bottomColor: { value: new THREE.Color(0xff7f50) },
+        offset: { value: 33 },
+        exponent: { value: 0.6 },
+      },
+      vertexShader: `
+        varying vec3 vWorldPosition;
+        void main() {
+          vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+          vWorldPosition = worldPosition.xyz;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 topColor;
+        uniform vec3 bottomColor;
+        uniform float offset;
+        uniform float exponent;
+        varying vec3 vWorldPosition;
+        void main() {
+          float h = normalize(vWorldPosition + offset).y;
+          gl_FragColor = vec4(mix(bottomColor, topColor, max(pow(max(h, 0.0), exponent), 0.0)), 1.0);
+        }
+      `,
+    };
+
+    const skyGeo = new THREE.SphereGeometry(4000, 32, 15);
+    const skyMat = new THREE.ShaderMaterial({
+      uniforms: shader.uniforms,
+      vertexShader: shader.vertexShader,
+      fragmentShader: shader.fragmentShader,
+      side: THREE.BackSide,
+    });
+
+    return <primitive object={new THREE.Mesh(skyGeo, skyMat)} />;
+  };
+
   return (
     <>
       {isRetro ? (
-        <Sky
-          distance={450000}
-          sunPosition={[1, 1, 1]}
-          inclination={0}
-          azimuth={0.25}
-        />
+        <WarmSky />
       ) : (
         <Stars
           radius={300}
@@ -106,7 +141,7 @@ const EarthAnimation: React.FC<EarthAnimationProps> = ({ theme }) => {
         />
       )}
 
-      <Sphere ref={earthRef} args={[2, 64, 64]}>
+      <Sphere ref={earthRef} args={[2.5, 64, 64]}>
         <meshPhongMaterial
           map={colorMap}
           normalMap={normalMap}
@@ -117,7 +152,7 @@ const EarthAnimation: React.FC<EarthAnimationProps> = ({ theme }) => {
           depthWrite={false}
         />
       </Sphere>
-      <Sphere ref={cloudsRef} args={[2.03, 64, 64]}>
+      <Sphere ref={cloudsRef} args={[2.53, 64, 64]}>
         <meshPhongMaterial map={cloudsMap} transparent={true} opacity={0.4} />
       </Sphere>
       <Sphere ref={atmosphereRef} args={[2.1, 64, 64]}>
