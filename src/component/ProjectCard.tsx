@@ -35,11 +35,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   return (
     <div
-      className={`mx-auto mb-8 flex max-w-7xl flex-col items-center p-4 lg:flex-row ${textColor}`}
+      className={`mx-auto mb-8 flex max-w-7xl flex-col items-center rounded-lg p-4 lg:flex-row lg:items-center ${textColor}`}
+      style={{ borderRadius: '20px' }}
     >
-      <div className="flex w-full lg:w-1/2">
-        <div className="h-[400px] w-full overflow-hidden rounded-lg">
-          <CarouselWrapper images={imageUrls} prefix={prefix} />
+      <div className="flex w-full items-center justify-center lg:w-1/2">
+        <div className="mb-8 mt-8 h-[380px] w-[600px] overflow-hidden rounded-xl">
+          <CarouselWrapper
+            images={imageUrls}
+            prefix={prefix}
+            className="h-[380px] w-[600px] rounded-xl object-cover"
+            imgClassName="rounded-xl"
+          />
         </div>
       </div>
 
