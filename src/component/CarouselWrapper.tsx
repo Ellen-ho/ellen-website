@@ -3,11 +3,15 @@ import React, { useState } from 'react';
 interface CarouselWrapperProps {
   images: { src: string; alt: string }[];
   prefix: string;
+  className?: string;
+  imgClassName?: string;
 }
 
 const CarouselWrapper: React.FC<CarouselWrapperProps> = ({
   images,
   prefix,
+  className,
+  imgClassName,
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -24,7 +28,7 @@ const CarouselWrapper: React.FC<CarouselWrapperProps> = ({
   };
 
   return (
-    <div>
+    <div className={className}>
       <div className="carousel w-full">
         {images.map((image, index) => (
           <div
@@ -33,7 +37,12 @@ const CarouselWrapper: React.FC<CarouselWrapperProps> = ({
               index === currentSlide ? 'block' : 'hidden'
             }`}
           >
-            <img src={image.src} alt={image.alt} className="w-full" />
+            <img
+              src={image.src}
+              alt={image.alt}
+              className={`h-full w-full object-cover ${imgClassName}`}
+              style={{ width: '600px', height: '330px' }}
+            />
             <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
               <button onClick={goToPreviousSlide} className="btn btn-circle">
                 ❮
@@ -46,7 +55,7 @@ const CarouselWrapper: React.FC<CarouselWrapperProps> = ({
         ))}
       </div>
 
-      <div className="flex w-full justify-center gap-2 py-2">
+      <div className="flex w-full justify-center gap-2 py-4">
         {images.map((_, index) => (
           <button
             key={index}
