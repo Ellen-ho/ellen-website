@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <header
-      className={`fixed left-0 top-0 z-[9999] h-20 w-full transition-colors duration-300 ${
+      className={`fixed left-0 top-0 z-[9999] h-20 w-full ${
         theme === 'night' ? 'bg-[#374150]' : 'bg-[#e7e0d6]'
       }`}
     >
