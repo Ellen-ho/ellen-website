@@ -17,15 +17,14 @@ const Header: React.FC<HeaderProps> = ({
   theme,
   onThemeChange,
 }) => {
-  const backgroundColor = theme === 'night' ? '#374150' : '#f0e6d6';
-
   return (
     <header
-      className="fixed left-0 top-0 z-[9999] h-20 w-full"
-      style={{ backgroundColor }}
+      className={`fixed left-0 top-0 z-[9999] h-20 w-full transition-colors duration-300 ${
+        theme === 'night' ? 'bg-[#374150]' : 'bg-[#e7e0d6]'
+      }`}
     >
-      <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-between px-10 py-4">
-        <div className="flex items-center space-x-8">
+      <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-between px-10">
+        <div className="flex items-center space-x-4">
           <img
             id="logo"
             src={
@@ -46,7 +45,7 @@ const Header: React.FC<HeaderProps> = ({
         </div>
 
         <nav className="flex justify-center space-x-6">
-          <div className="btn-group rounded-full bg-transparent p-2">
+          <div className="btn-group rounded-full p-2">
             <NavLink
               section="home"
               label="Home"
@@ -56,12 +55,6 @@ const Header: React.FC<HeaderProps> = ({
             <NavLink
               section="project"
               label="Project"
-              activeSection={activeSection}
-              onClick={onLinkClick}
-            />
-            <NavLink
-              section="resume"
-              label="Resume"
               activeSection={activeSection}
               onClick={onLinkClick}
             />
