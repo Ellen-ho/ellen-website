@@ -55,14 +55,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <div className="mb-4 flex flex-wrap gap-2">
           {techStack.map((tech) => (
             <span
-              className={`badge ${techSkillColor} rounded border px-2 py-1`}
+              className={`badge ${techSkillColor} rounded border px-4 py-3`}
               key={tech}
             >
               {tech}
             </span>
           ))}
         </div>
-
         <p className={`mb-4 ${descriptionColor}`}>{description}</p>
 
         <div className="flex space-x-4">
