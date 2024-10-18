@@ -18,23 +18,29 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
           <h1 className={`mb-4 text-5xl font-bold ${textColor}`}>
             Hi, I am Ellen Ho 👋
           </h1>
-          <p className={`mb-6 text-lg ${textColor}`}>
+          <p className={`mb-6 text-xl ${textColor}`}>
             As a software engineer, I’m passionate about solving complex
             problems and creating impactful solutions. I push boundaries to
             build systems that enrich lives and deliver meaningful experiences,
             always thinking beyond the conventional to bring ideas to life.
           </p>
           <div className="mb-6 flex justify-center space-x-4 lg:justify-start">
-            <span className="badge badge-primary">Developer</span>
-            <span className="badge badge-secondary">Physician</span>
-            <span className="badge badge-accent">Writer</span>
+            <span className="badge badge-primary min-h-[40px] px-4 py-2 text-lg">
+              Developer
+            </span>
+            <span className="badge badge-secondary min-h-[40px] px-4 py-2 text-lg">
+              Physician
+            </span>
+            <span className="badge badge-accent min-h-[40px] px-4 py-2 text-lg">
+              Writer
+            </span>
           </div>
         </div>
 
         <div className="flex justify-center lg:w-1/3 lg:justify-start">
           <div className="overflow-hidden rounded-lg">
             <img
-              src="https://avatar.iran.liara.run/public/79"
+              src="https://avatar.iran.liara.run/public/97"
               alt="Ellen Ho"
               className="h-80 w-80 rounded-full object-cover lg:h-96 lg:w-96"
             />
