@@ -39,20 +39,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       style={{ borderRadius: '20px' }}
     >
       <div className="flex w-full items-center justify-center lg:w-1/2">
-        <div className="mb-8 mt-8 h-[380px] w-[600px] overflow-hidden rounded-xl">
+        <div className="mb-8 mt-8 w-full overflow-hidden rounded-xl">
           <CarouselWrapper
             images={imageUrls}
             prefix={prefix}
-            className="h-[380px] w-[600px] rounded-xl object-cover"
-            imgClassName="rounded-xl"
+            className="w-full max-w-full rounded-xl object-cover"
+            imgClassName="w-full h-auto rounded-xl"
+            theme={theme}
           />
         </div>
       </div>
 
-      <div className="mt-4 w-full lg:mt-0 lg:w-1/2 lg:pl-8">
-        <h2 className="mb-2 text-2xl font-bold">{title}</h2>
+      <div className="mb-8 mt-2 w-full lg:mb-8 lg:mt-2 lg:w-1/2 lg:pl-8">
+        <h2 className="mb-4 text-2xl font-bold">{title}</h2>
 
-        <div className="mb-4 flex flex-wrap gap-2">
+        <div className="mb-6 flex flex-wrap gap-2">
           {techStack.map((tech) => (
             <span
               className={`badge ${techSkillColor} rounded border px-4 py-3`}
@@ -62,7 +63,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             </span>
           ))}
         </div>
-        <p className={`mb-4 ${descriptionColor}`}>{description}</p>
+
+        <p className={`mb-6 ${descriptionColor}`}>{description}</p>
 
         <div className="flex space-x-4">
           <a href={demoUrl} target="_blank" rel="noopener noreferrer">

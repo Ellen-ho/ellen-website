@@ -95,7 +95,7 @@ const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionProps>(
         title: 'Taipei Day Trip',
         prefix: 'taipei-day-trip',
         description:
-          'A full-stack project: an e-commerce travel platform that helps users easily explore Taipei’s attractions and offers online booking and purchase of travel plans.',
+          'A full-stack application: an e-commerce travel platform that helps users easily explore Taipei’s attractions and offers online booking and purchase of travel plans.',
         techStack: [
           'JavaScript',
           'AJAX',
@@ -107,7 +107,6 @@ const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionProps>(
           'MySQL',
           'JWT (Authentication)',
           'TapPay (Payment Gateway)',
-          'i18next (Internationalization)',
         ],
         imageUrls: [
           {
@@ -115,7 +114,7 @@ const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionProps>(
             alt: 'Slide 1',
           },
           {
-            src: '/images/signin_signup.png',
+            src: '/images/signin-signup.jpg',
             alt: 'Slide 2',
           },
           {
@@ -130,6 +129,45 @@ const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionProps>(
         demoUrl: 'https://travelco.agency/',
         repoUrl: 'https://github.com/Ellen-ho/taipei-day-trip',
       },
+      {
+        title: 'Acupuncture Helper',
+        prefix: 'acupuncture-helper',
+        description:
+          'A full-stack app that streamlines acupuncture treatments by replacing paper processes with a digital solution.',
+        techStack: [
+          'JavaScript',
+          'AJAX',
+          'HTML',
+          'CSS',
+          'Node.js',
+          'Express',
+          'MongoDB',
+          'Mongoose',
+          'JWT (Authentication)',
+          'Bootstrap',
+          'RWD',
+        ],
+        imageUrls: [
+          {
+            src: '/images/acupuncture-pic.png',
+            alt: 'Slide 1',
+          },
+          {
+            src: '/images/today-work.gif',
+            alt: 'Slide 2',
+          },
+          {
+            src: '/images/patient-list.png',
+            alt: 'Slide 3',
+          },
+          {
+            src: '/images/treatment-detail.png',
+            alt: 'Slide 4',
+          },
+        ],
+        demoUrl: 'https://acupuncture-helper-service.onrender.com/users/login',
+        repoUrl: 'https://github.com/Ellen-ho/acupuncture-helper',
+      },
     ];
 
     const textColor = theme === 'night' ? 'text-white' : 'text-black';
@@ -141,7 +179,7 @@ const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionProps>(
         className={`mx-7 mb-16 pt-24 md:mb-0 lg:mx-40 ${textColor}`}
       >
         <h1 className="mb-8 text-center text-4xl font-bold">Projects</h1>
-        <div className="space-y-8">
+        <div className="space-y-4">
           {projects.map((project) => (
             <ProjectCard
               key={project.title}
