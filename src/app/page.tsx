@@ -8,6 +8,7 @@ import ProjectsSection from '@/component/ProjectsSection';
 import ContactSection from '@/component/ContactSection';
 import Header from '@/component/Header';
 import EarthAnimation from '@/component/EarthAnimation';
+import Footer from '@/component/Footer';
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState<string>('home');
@@ -179,6 +180,7 @@ export default function HomePage() {
           <ContactSection theme={theme} />
         </div>
       </div>
+      <Footer theme={theme} />
     </div>
   );
 }
