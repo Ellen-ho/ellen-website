@@ -40,6 +40,14 @@ html {
   scroll-behavior: smooth;
 }
 
+a {
+  cursor: pointer !important;
+}
+
+a:hover {
+  cursor: pointer !important;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
