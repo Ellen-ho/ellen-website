@@ -35,17 +35,17 @@ const EarthAnimation: React.FC<EarthAnimationProps> = ({ theme }) => {
 
   const textColor = theme === 'retro' ? '#141A50' : '#ffffff';
 
-  const textGeometry1 = new TextGeometry('Hello, World.', {
+  const textGeometry1 = new TextGeometry('Hello, World', {
     font,
     size: 0.8,
-    height: 0.1,
+    depth: 0.1,
     curveSegments: 30,
   });
 
-  const textGeometry2 = new TextGeometry('Hello, Real World.', {
+  const textGeometry2 = new TextGeometry('Hello, Real World', {
     font,
     size: 0.6,
-    height: 0.1,
+    depth: 0.1,
     curveSegments: 30,
   });
 
@@ -141,7 +141,7 @@ const EarthAnimation: React.FC<EarthAnimationProps> = ({ theme }) => {
         />
       )}
 
-      <Sphere ref={earthRef} args={[2.5, 64, 64]}>
+      <Sphere ref={earthRef} args={[2.8, 64, 64]}>
         <meshPhongMaterial
           map={colorMap}
           normalMap={normalMap}
@@ -152,10 +152,12 @@ const EarthAnimation: React.FC<EarthAnimationProps> = ({ theme }) => {
           depthWrite={false}
         />
       </Sphere>
-      <Sphere ref={cloudsRef} args={[2.53, 64, 64]}>
+
+      <Sphere ref={cloudsRef} args={[2.83, 64, 64]}>
         <meshPhongMaterial map={cloudsMap} transparent={true} opacity={0.4} />
       </Sphere>
-      <Sphere ref={atmosphereRef} args={[2.1, 64, 64]}>
+
+      <Sphere ref={atmosphereRef} args={[2.6, 64, 64]}>
         <meshPhongMaterial color="#88c3ff" transparent={true} opacity={0.1} />
       </Sphere>
       <ambientLight intensity={0.4} />
