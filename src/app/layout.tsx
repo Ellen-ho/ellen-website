@@ -1,17 +1,9 @@
 'use client';
 
 import '@/styles/globals.css';
-import { NextIntlClientProvider } from 'next-intl';
 import { useEffect, useState } from 'react';
 
-export default function LocaleLayout({
-  children,
-  params: { locale },
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
-  const [messages, setMessages] = useState({});
+export default function Layout({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState('retro');
 
   useEffect(() => {
@@ -21,11 +13,9 @@ export default function LocaleLayout({
   }, []);
 
   return (
-    <html lang={locale} data-theme={theme}>
+    <html lang="en" data-theme={theme}>
       <body className={`${theme === 'retro' ? 'bg-[#e7e0d6]' : '#374150'}`}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        {children}
       </body>
     </html>
   );

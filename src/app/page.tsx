@@ -13,6 +13,7 @@ export default function HomePage() {
   const [activeSection, setActiveSection] = useState<string>('home');
   const [theme, setTheme] = useState<string>('retro');
   const [scrollProgress, setScrollProgress] = useState<number>(0);
+  const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
 
   const homeRef = useRef<HTMLDivElement>(null);
   const projectRef = useRef<HTMLDivElement>(null);
@@ -26,6 +27,17 @@ export default function HomePage() {
     setTheme(storedTheme);
     document.documentElement.setAttribute('data-theme', storedTheme);
 
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
@@ -61,11 +73,40 @@ export default function HomePage() {
     document.body.style.backgroundColor = backgroundColor;
   };
 
+  const handleLinkClick = (section: string) => {
+    setActiveSection(section);
+
+    if (section === 'home' && homeRef.current) {
+      const elementTop = homeRef.current.offsetTop;
+      const windowHeight = window.innerHeight;
+      const elementHeight = homeRef.current.offsetHeight;
+
+      const offset = elementTop - (windowHeight - elementHeight) / 2;
+
+      setTimeout(() => {
+        window.scrollTo({
+          top: Math.max(0, offset),
+          behavior: 'smooth',
+        });
+      }, 100);
+    } else if (section === 'project' && projectRef.current) {
+      projectRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    } else if (section === 'contact' && contactRef.current) {
+      contactRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  };
+
   return (
     <div style={{ overflowX: 'hidden' }}>
       <Header
         activeSection={activeSection}
-        onLinkClick={setActiveSection}
+        onLinkClick={handleLinkClick}
         theme={theme}
         onThemeChange={handleThemeChange}
       />
@@ -102,11 +143,13 @@ export default function HomePage() {
 
         <div
           ref={homeRef}
+          className="px-0 sm:px-4"
           style={{
-            minHeight: '50vh',
+            minHeight: '100vh',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            paddingTop: isSmallScreen ? '4rem' : '2rem',
           }}
         >
           <HeroSection theme={theme} />
@@ -114,10 +157,11 @@ export default function HomePage() {
 
         <div
           ref={projectRef}
+          className="px-0 sm:px-4"
           style={{
             minHeight: '100vh',
-            paddingTop: '2rem',
-            paddingBottom: '1rem',
+            paddingTop: isSmallScreen ? '5rem' : '3rem',
+            paddingBottom: isSmallScreen ? '2rem' : '1rem',
           }}
         >
           <ProjectsSection theme={theme} />
@@ -125,10 +169,11 @@ export default function HomePage() {
 
         <div
           ref={contactRef}
+          className="px-0 sm:px-4"
           style={{
             minHeight: '30vh',
-            paddingTop: '1rem',
-            paddingBottom: '2rem',
+            paddingTop: isSmallScreen ? '5rem' : '1rem',
+            paddingBottom: isSmallScreen ? '3rem' : '2rem',
           }}
         >
           <ContactSection theme={theme} />
