@@ -21,8 +21,8 @@ const ContactSection = React.forwardRef<HTMLDivElement, ContactSectionProps>(
       >
         <h1 className="mb-8 text-center text-4xl font-bold">Contact</h1>
 
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-          <div className="-ml-10 lg:w-2/3 lg:pr-16">
+        <div className="flex flex-col items-center lg:flex-row lg:items-center lg:justify-between">
+          <div className="mb-8 text-center lg:mb-0 lg:w-2/3 lg:pr-16 lg:text-left">
             <ContactContent theme={theme} />
           </div>
 
@@ -37,15 +37,6 @@ const ContactSection = React.forwardRef<HTMLDivElement, ContactSectionProps>(
                 style={{ zIndex: 10 }}
               >
                 <FaGithub />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`cursor-pointer text-5xl ${hoverColor} transition-colors duration-200`}
-                style={{ zIndex: 10 }}
-              >
-                <FaLinkedin />
               </a>
               <a
                 href="https://medium.com/@ellen31725"
