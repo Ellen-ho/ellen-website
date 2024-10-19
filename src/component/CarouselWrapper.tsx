@@ -35,6 +35,7 @@ const CarouselWrapper: React.FC<CarouselWrapperProps> = ({
     theme === 'night' ? 'rgba(228, 216, 180, 0.2)' : 'rgba(13, 20, 36, 0.1)';
   const arrowHoverBackgroundColor =
     theme === 'night' ? 'rgba(228, 216, 180, 0.4)' : 'rgba(13, 20, 36, 0.3)';
+
   if (images.length === 0) {
     return null;
   }
@@ -55,6 +56,7 @@ const CarouselWrapper: React.FC<CarouselWrapperProps> = ({
     position: 'relative' as const,
     overflow: 'hidden',
     transition: 'background-color 0.3s ease',
+    zIndex: 10,
   };
 
   const arrowStyle = {
@@ -66,8 +68,23 @@ const CarouselWrapper: React.FC<CarouselWrapperProps> = ({
     lineHeight: '1',
   };
 
+  const numberButtonStyle = (index: number) => ({
+    backgroundColor: index === currentSlide ? arrowColor : 'transparent',
+    border: `1px solid ${borderColor}`,
+    color: index === currentSlide ? '#fff' : arrowColor,
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    padding: '4px 8px',
+    borderRadius: '4px',
+    minWidth: '24px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 10,
+  });
+
   return (
-    <div className={className}>
+    <div className={`${className} relative`} style={{ zIndex: 1 }}>
       <div className="carousel relative w-full overflow-hidden">
         <div
           className="carousel-inner flex transition-transform duration-300 ease-in-out"
@@ -117,18 +134,16 @@ const CarouselWrapper: React.FC<CarouselWrapperProps> = ({
         </div>
       </div>
 
-      <div className="flex w-full justify-center gap-2 py-4">
+      <div
+        className="flex w-full justify-center gap-2 py-4"
+        style={{ zIndex: 10, position: 'relative' }}
+      >
         {images.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`btn btn-xs ${index === currentSlide ? 'btn-active' : ''}`}
-            style={{
-              backgroundColor:
-                index === currentSlide ? arrowColor : 'transparent',
-              border: `1px solid ${borderColor}`,
-              color: index === currentSlide ? '#fff' : arrowColor,
-            }}
+            className="hover:opacity-80 focus:outline-none"
+            style={numberButtonStyle(index)}
           >
             {index + 1}
           </button>
