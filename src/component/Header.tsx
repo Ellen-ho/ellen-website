@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useCallback, useState } from 'react';
 import NavLink from './NavLink';
 import ThemeToggle from './ThemeToggle';
@@ -30,6 +28,16 @@ const Header: React.FC<HeaderProps> = ({
     },
     [onLinkClick],
   );
+
+  const navBackgroundColor =
+    theme === 'night'
+      ? 'bg-neutral shadow-[rgba(0, 0, 0, 0.6) 0px 4px 12px]'
+      : 'bg-base-100 shadow-[rgba(0, 0, 0, 0.1) 0px 4px 12px]';
+  const borderColor = theme === 'night' ? 'border-gray-700' : 'border-gray-300';
+  const navShadow =
+    theme === 'night'
+      ? 'shadow-[rgba(0, 0, 0, 0.8) 0px 4px 12px]'
+      : 'shadow-[rgba(0, 0, 0, 0.15) 0px 4px 12px]';
 
   return (
     <header
@@ -90,7 +98,7 @@ const Header: React.FC<HeaderProps> = ({
         <nav
           className={`${
             isMenuOpen ? 'flex' : 'hidden'
-          } bg-base-100 absolute right-0 top-16 z-50 w-1/3 flex-col space-y-4 rounded-lg p-4 shadow lg:static lg:flex lg:w-auto lg:flex-row lg:space-x-6 lg:space-y-0 lg:bg-transparent lg:p-0`}
+          } ${navBackgroundColor} absolute right-0 top-16 z-50 w-1/3 flex-col space-y-4 rounded-lg p-4 lg:static lg:flex lg:w-auto lg:flex-row lg:space-x-6 lg:space-y-0 lg:bg-transparent lg:p-0 ${navShadow}`}
         >
           <div className="flex justify-center lg:hidden">
             <ThemeToggle theme={theme} onThemeChange={onThemeChange} />
