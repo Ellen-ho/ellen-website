@@ -38,7 +38,7 @@ const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionProps>(
             alt: 'Slide 1',
           },
           {
-            src: '/images/real_time.gif',
+            src: '/images/real-time.gif',
             alt: 'Slide 2',
           },
           {
@@ -76,7 +76,7 @@ const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionProps>(
             alt: 'Slide 1',
           },
           {
-            src: '/images/views-patient-info.gif',
+            src: '/images/view-patient-info.gif',
             alt: 'Slide 2',
           },
           {
