@@ -12,7 +12,7 @@ const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionProps>(
         title: 'Clinic Pulse',
         prefix: 'clinic-pulse',
         description:
-          'A full-stack clinic management platform designed to integrate real-time data, detailed lists, and charts to enhance clinic management efficiency.',
+          'Full-stack clinic management platform integrating real-time data, detailed lists, and charts to enhance clinic management efficiency. The frontend and backend are deployed on AWS.',
         techStack: [
           'React',
           'Material UI',
@@ -57,7 +57,7 @@ const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionProps>(
         title: 'Medi Connect',
         prefix: 'medi-connect',
         description:
-          'A full-stack project designed to help doctors and patients understand health and make informed decisions beyond clinic hours. The frontend is deployed on Vercel, and the backend is deployed on Render.',
+          'Full-stack healthcare platform supporting informed decisions for doctors and patients beyond clinic hours. The frontend is deployed on Vercel, and the backend is deployed on Render.',
         techStack: [
           'React',
           'Material UI',
@@ -95,7 +95,7 @@ const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionProps>(
         title: 'Taipei Day Trip',
         prefix: 'taipei-day-trip',
         description:
-          'A full-stack application: an e-commerce travel platform that helps users easily explore Taipei’s attractions and offers online booking and purchase of travel plans.',
+          'Full-stack e-commerce travel platform that helps users explore Taipei’s attractions and offers online booking and purchase of travel plans.',
         techStack: [
           'JavaScript',
           'AJAX',
@@ -133,7 +133,7 @@ const ProjectsSection = React.forwardRef<HTMLDivElement, ProjectsSectionProps>(
         title: 'Acupuncture Helper',
         prefix: 'acupuncture-helper',
         description:
-          'A full-stack app that streamlines acupuncture treatments by replacing paper processes with a digital solution.',
+          'Full-stack application that streamlines acupuncture treatments by replacing paper processes with a digital solution.',
         techStack: [
           'JavaScript',
           'AJAX',

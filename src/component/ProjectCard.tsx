@@ -50,7 +50,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
       </div>
 
-      <div className="mb-8 mt-2 w-full lg:mb-8 lg:mt-2 lg:w-1/2 lg:pl-8">
+      <div className="mb-8 w-full lg:mb-8 lg:w-1/2 lg:pl-8">
         <h2 className="mb-4 text-2xl font-bold">{title}</h2>
 
         <div className="mb-6 flex flex-wrap gap-2">
