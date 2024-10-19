@@ -34,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <header
       className={`fixed left-0 top-0 z-[9999] h-20 w-full ${
-        theme === 'night' ? 'bg-[#374150]' : 'bg-[#e7e0d6]'
+        theme === 'night' ? 'bg-neutral' : 'bg-base-200'
       }`}
     >
       <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-between px-10">
@@ -89,10 +89,14 @@ const Header: React.FC<HeaderProps> = ({
 
         <nav
           className={`${
-            isMenuOpen ? 'block' : 'hidden'
-          } absolute left-0 top-16 z-50 w-full flex-col space-y-4 bg-white p-4 lg:static lg:flex lg:w-auto lg:flex-row lg:space-x-6 lg:space-y-0 lg:bg-transparent lg:p-0`}
+            isMenuOpen ? 'flex' : 'hidden'
+          } bg-base-100 absolute right-0 top-16 z-50 w-1/3 flex-col space-y-4 rounded-lg p-4 shadow lg:static lg:flex lg:w-auto lg:flex-row lg:space-x-6 lg:space-y-0 lg:bg-transparent lg:p-0`}
         >
-          <div className="btn-group lg:rounded-full lg:p-2">
+          <div className="flex justify-center lg:hidden">
+            <ThemeToggle theme={theme} onThemeChange={onThemeChange} />
+          </div>
+
+          <div className="flex flex-col items-center lg:flex-row lg:space-x-6">
             <NavLink
               section="home"
               label="Home"
@@ -111,10 +115,6 @@ const Header: React.FC<HeaderProps> = ({
               activeSection={activeSection}
               onClick={handleClick}
             />
-          </div>
-
-          <div className="flex justify-center lg:hidden">
-            <ThemeToggle theme={theme} onThemeChange={onThemeChange} />
           </div>
         </nav>
 
