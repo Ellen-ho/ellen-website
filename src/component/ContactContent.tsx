@@ -34,6 +34,7 @@ export default function ContactContent({ theme }: ContactContentProps) {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
+
     if (formData.name.trim().length === 0) {
       return setFormError('⚠️ Name is required');
     }
@@ -44,23 +45,27 @@ export default function ContactContent({ theme }: ContactContentProps) {
       return setFormError('⚠️ Message is required');
     } else {
       setFormError('');
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'contact-form', ...formData }),
-      })
-        .then(() => setShowSuccessMsg(true))
-        .then(() => setFormData({ name: '', email: '', message: '' }))
-        .catch((error) => alert(error));
-    }
-  };
 
-  const encode = (data: Record<string, string>) => {
-    return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]),
-      )
-      .join('&');
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => {
+          if (response.ok) {
+            setShowSuccessMsg(true);
+            setFormData({ name: '', email: '', message: '' });
+          } else {
+            return response.json().then((data) => {
+              setFormError(`⚠️ ${data.message}`);
+            });
+          }
+        })
+        .catch((error) => {
+          console.error('Error submitting form:', error);
+          setFormError('⚠️ Something went wrong. Please try again.');
+        });
+    }
   };
 
   const handleSendAnother = () => {
