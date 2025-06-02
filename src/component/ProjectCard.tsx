@@ -43,7 +43,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <CarouselWrapper
             images={imageUrls}
             prefix={prefix}
-            className="w-full max-w-full rounded-xl object-cover"
+            className="w-full max-w-full rounded-xl object-cover relative z-0"
             imgClassName="w-full h-auto rounded-xl"
             theme={theme}
           />
@@ -66,7 +66,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
         <p className={`mb-6 ${descriptionColor}`}>{description}</p>
 
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 relative z-10">
           <a href={demoUrl} target="_blank" rel="noopener noreferrer">
             <button className={`btn ${btnPrimary}`}>Live Demo</button>
           </a>
